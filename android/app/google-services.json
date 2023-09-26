@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "783731909978",
+    "project_id": "appblogdas",
+    "storage_bucket": "appblogdas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783731909978:android:9af976131b418c68463f63",
+        "android_client_info": {
+          "package_name": "com.mycompany.appblogdas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-EgSAjBppy84Y8ljVVtajYtE0_cC8Crs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import '/backend/backend.dart';
 
 import '/index.dart';
 import '/main.dart';
@@ -46,6 +47,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => HomePageWidget(),
+        ),
+        FFRoute(
+          name: 'PostForm',
+          path: '/postForm',
+          builder: (context, params) => PostFormWidget(),
+        ),
+        FFRoute(
+          name: 'TestHomePage',
+          path: '/testHomePage',
+          builder: (context, params) => TestHomePageWidget(),
+        ),
+        FFRoute(
+          name: 'DetailsBlog',
+          path: '/detailsBlog',
+          asyncParams: {
+            'document': getDoc(['blogs'], BlogsRecord.fromSnapshot),
+          },
+          builder: (context, params) => DetailsBlogWidget(
+            document: params.getParam('document', ParamType.Document),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -117,6 +138,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -130,11 +152,8 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(
-      param,
-      type,
-      isList,
-    );
+    return deserializeParam<T>(param, type, isList,
+        collectionNamePath: collectionNamePath);
   }
 }
 
