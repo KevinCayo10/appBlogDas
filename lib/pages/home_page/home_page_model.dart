@@ -12,9 +12,9 @@ class HomePageModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for TextField widget.
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
+  // State field(s) for buscar_post widget.
+  TextEditingController? buscarPostController;
+  String? Function(BuildContext, String?)? buscarPostControllerValidator;
 
   /// Initialization and disposal methods.
 
@@ -22,7 +22,7 @@ class HomePageModel extends FlutterFlowModel {
 
   void dispose() {
     unfocusNode.dispose();
-    textController?.dispose();
+    buscarPostController?.dispose();
   }
 
   /// Action blocks are added here.

@@ -57,6 +57,25 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
         ),
       ],
     ),
+    'rowOnPageLoadAnimation': AnimationInfo(
+      trigger: AnimationTrigger.onPageLoad,
+      effects: [
+        FadeEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: 0.0,
+          end: 1.0,
+        ),
+        MoveEffect(
+          curve: Curves.easeInOut,
+          delay: 0.ms,
+          duration: 600.ms,
+          begin: Offset(50.0, 0.0),
+          end: Offset(0.0, 0.0),
+        ),
+      ],
+    ),
     'textOnPageLoadAnimation1': AnimationInfo(
       trigger: AnimationTrigger.onPageLoad,
       effects: [
@@ -92,25 +111,6 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
           delay: 0.ms,
           duration: 600.ms,
           begin: Offset(60.0, 0.0),
-          end: Offset(0.0, 0.0),
-        ),
-      ],
-    ),
-    'rowOnPageLoadAnimation': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0.0,
-          end: 1.0,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(50.0, 0.0),
           end: Offset(0.0, 0.0),
         ),
       ],
@@ -211,6 +211,22 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              5.0, 0.0, 0.0, 0.0),
+                          child: Text(
+                            dateTimeFormat(
+                                'd/M h:mm a', widget.document!.createdTime!),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Plus Jakarta Sans',
+                                  color: Color(0xFF0F1113),
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                        ),
                         Hero(
                           tag: widget.document!.image,
                           transitionOnUserGestures: true,
@@ -219,12 +235,46 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                             child: Image.network(
                               widget.document!.image,
                               width: double.infinity,
-                              height: 250.0,
+                              height: 397.0,
                               fit: BoxFit.cover,
                             ),
                           ),
                         ).animateOnPageLoad(
                             animationsMap['imageOnPageLoadAnimation']!),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 4.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png',
+                                  width: 40.0,
+                                  height: 40.0,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'author',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: Color(0xFF0F1113),
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ).animateOnPageLoad(
+                              animationsMap['rowOnPageLoadAnimation']!),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 16.0, 0.0, 0.0),
@@ -265,35 +315,12 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Icon(
-                                Icons.person,
-                                color: Color(0xFF827AE1),
-                                size: 24.0,
-                              ),
-                              Text(
-                                'author',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Plus Jakarta Sans',
-                                      color: Color(0xFF0F1113),
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                            ],
-                          ).animateOnPageLoad(
-                              animationsMap['rowOnPageLoadAnimation']!),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
                               4.0, 4.0, 0.0, 0.0),
                           child: Text(
-                            'A beach is a narrow, gently sloping strip of land that lies along the edge of an ocean, lake, or river. Materials such as sand, pebbles, rocks, and seashell fragments cover beaches.',
+                            valueOrDefault<String>(
+                              widget.document?.informacion,
+                              'null',
+                            ),
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
