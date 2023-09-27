@@ -56,6 +56,7 @@ class _PostFormWidgetState extends State<PostFormWidget>
     _model.textController3 ??= TextEditingController();
     _model.textController4 ??= TextEditingController();
     _model.textController5 ??= TextEditingController();
+    _model.textController6 ??= TextEditingController();
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -406,6 +407,70 @@ class _PostFormWidgetState extends State<PostFormWidget>
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
+                            labelText: 'Categoría',
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  color: Color(0xFF606A85),
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Outfit',
+                                  color: Color(0xFF606A85),
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFE5E7EB),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFF6F61EF),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFFF5963),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFFF5963),
+                                width: 2.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 12.0, 16.0, 12.0),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: Color(0xFF15161E),
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          cursorColor: Color(0xFF6F61EF),
+                          validator: _model.textController5Validator
+                              .asValidator(context),
+                        ),
+                        TextFormField(
+                          controller: _model.textController6,
+                          autofocus: true,
+                          obscureText: false,
+                          decoration: InputDecoration(
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -464,7 +529,7 @@ class _PostFormWidgetState extends State<PostFormWidget>
                           maxLines: 16,
                           minLines: 6,
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController5Validator
+                          validator: _model.textController6Validator
                               .asValidator(context),
                         ),
                       ].divide(SizedBox(height: 12.0)),

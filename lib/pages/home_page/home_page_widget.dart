@@ -365,7 +365,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            context.pushNamed('DetailsBlog');
+                                            context.pushNamed(
+                                              'DetailsBlog',
+                                              queryParameters: {
+                                                'document': serializeParam(
+                                                  wrapBlogsRecord,
+                                                  ParamType.Document,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                'document': wrapBlogsRecord,
+                                              },
+                                            );
                                           },
                                           child: Text(
                                             'Leer más',
@@ -396,7 +407,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color(0xFF533E85),
+                              gradient: LinearGradient(
+                                colors: [Color(0xFF675C81), Color(0xFF533E85)],
+                                stops: [0.0, 1.0],
+                                begin: AlignmentDirectional(0.0, -1.0),
+                                end: AlignmentDirectional(0, 1.0),
+                              ),
                               shape: BoxShape.rectangle,
                             ),
                             child: Row(
@@ -410,7 +426,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         AlignmentDirectional(-1.00, 0.00),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          40.0, 0.0, 0.0, 0.0),
+                                          50.0, 0.0, 0.0, 0.0),
                                       child: Text(
                                         'Universidad Técnica de Ambato - Carrera de Ingeniería en Software',
                                         textAlign: TextAlign.justify,

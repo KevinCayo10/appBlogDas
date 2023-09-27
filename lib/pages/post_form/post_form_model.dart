@@ -28,6 +28,9 @@ class PostFormModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
+  // State field(s) for TextField widget.
+  TextEditingController? textController6;
+  String? Function(BuildContext, String?)? textController6Validator;
 
   /// Initialization and disposal methods.
 
@@ -40,6 +43,7 @@ class PostFormModel extends FlutterFlowModel {
     textController3?.dispose();
     textController4?.dispose();
     textController5?.dispose();
+    textController6?.dispose();
   }
 
   /// Action blocks are added here.
