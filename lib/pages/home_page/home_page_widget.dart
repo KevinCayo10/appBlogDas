@@ -395,12 +395,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [Color(0xFF533E85), Color(0x67533E85)],
-                                stops: [0.0, 1.0],
-                                begin: AlignmentDirectional(0.0, -1.0),
-                                end: AlignmentDirectional(0, 1.0),
-                              ),
+                              color: Color(0xFF533E85),
                               shape: BoxShape.rectangle,
                             ),
                             child: Text(
