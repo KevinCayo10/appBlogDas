@@ -270,12 +270,12 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Icon(
-                                Icons.star_rounded,
+                                Icons.person,
                                 color: Color(0xFF827AE1),
                                 size: 24.0,
                               ),
                               Text(
-                                '4.9 Stars',
+                                'author',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(

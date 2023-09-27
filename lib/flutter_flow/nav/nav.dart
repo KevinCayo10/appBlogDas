@@ -54,11 +54,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PostFormWidget(),
         ),
         FFRoute(
-          name: 'TestHomePage',
-          path: '/testHomePage',
-          builder: (context, params) => TestHomePageWidget(),
-        ),
-        FFRoute(
           name: 'DetailsBlog',
           path: '/detailsBlog',
           asyncParams: {

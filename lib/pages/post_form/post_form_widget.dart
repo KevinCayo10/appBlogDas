@@ -118,7 +118,7 @@ class _PostFormWidgetState extends State<PostFormWidget>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Bienvenido a PostDAS',
+                    'Bienvenido a BlogPostDAS',
                     style: FlutterFlowTheme.of(context).labelLarge.override(
                           fontFamily: 'Outfit',
                           color: Color(0xFF606A85),
