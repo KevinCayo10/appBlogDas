@@ -36,11 +36,35 @@ class BlogsRecord extends FirestoreRecord {
   String get categoria => _categoria ?? '';
   bool hasCategoria() => _categoria != null;
 
+  // "autor" field.
+  String? _autor;
+  String get autor => _autor ?? '';
+  bool hasAutor() => _autor != null;
+
+  // "informacion" field.
+  String? _informacion;
+  String get informacion => _informacion ?? '';
+  bool hasInformacion() => _informacion != null;
+
+  // "created_time" field.
+  DateTime? _createdTime;
+  DateTime? get createdTime => _createdTime;
+  bool hasCreatedTime() => _createdTime != null;
+
+  // "clave" field.
+  String? _clave;
+  String get clave => _clave ?? '';
+  bool hasClave() => _clave != null;
+
   void _initializeFields() {
     _titulo = snapshotData['titulo'] as String?;
     _descripcion = snapshotData['descripcion'] as String?;
     _image = snapshotData['image'] as String?;
     _categoria = snapshotData['categoria'] as String?;
+    _autor = snapshotData['autor'] as String?;
+    _informacion = snapshotData['informacion'] as String?;
+    _createdTime = snapshotData['created_time'] as DateTime?;
+    _clave = snapshotData['clave'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -81,6 +105,10 @@ Map<String, dynamic> createBlogsRecordData({
   String? descripcion,
   String? image,
   String? categoria,
+  String? autor,
+  String? informacion,
+  DateTime? createdTime,
+  String? clave,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -88,6 +116,10 @@ Map<String, dynamic> createBlogsRecordData({
       'descripcion': descripcion,
       'image': image,
       'categoria': categoria,
+      'autor': autor,
+      'informacion': informacion,
+      'created_time': createdTime,
+      'clave': clave,
     }.withoutNulls,
   );
 
@@ -102,12 +134,24 @@ class BlogsRecordDocumentEquality implements Equality<BlogsRecord> {
     return e1?.titulo == e2?.titulo &&
         e1?.descripcion == e2?.descripcion &&
         e1?.image == e2?.image &&
-        e1?.categoria == e2?.categoria;
+        e1?.categoria == e2?.categoria &&
+        e1?.autor == e2?.autor &&
+        e1?.informacion == e2?.informacion &&
+        e1?.createdTime == e2?.createdTime &&
+        e1?.clave == e2?.clave;
   }
 
   @override
-  int hash(BlogsRecord? e) => const ListEquality()
-      .hash([e?.titulo, e?.descripcion, e?.image, e?.categoria]);
+  int hash(BlogsRecord? e) => const ListEquality().hash([
+        e?.titulo,
+        e?.descripcion,
+        e?.image,
+        e?.categoria,
+        e?.autor,
+        e?.informacion,
+        e?.createdTime,
+        e?.clave
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is BlogsRecord;

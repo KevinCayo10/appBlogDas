@@ -1,8 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -51,12 +56,12 @@ class _PostFormWidgetState extends State<PostFormWidget>
     super.initState();
     _model = createModel(context, () => PostFormModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textController2 ??= TextEditingController();
-    _model.textController3 ??= TextEditingController();
-    _model.textController4 ??= TextEditingController();
-    _model.textController5 ??= TextEditingController();
-    _model.textController6 ??= TextEditingController();
+    _model.clavePostController ??= TextEditingController();
+    _model.autorPostController ??= TextEditingController();
+    _model.tituloPostController ??= TextEditingController();
+    _model.introPostController ??= TextEditingController();
+    _model.catePostController ??= TextEditingController();
+    _model.infoPostController ??= TextEditingController();
     setupAnimations(
       animationsMap.values.where((anim) =>
           anim.trigger == AnimationTrigger.onActionTrigger ||
@@ -147,7 +152,7 @@ class _PostFormWidgetState extends State<PostFormWidget>
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         TextFormField(
-                          controller: _model.textController1,
+                          controller: _model.clavePostController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -207,11 +212,11 @@ class _PostFormWidgetState extends State<PostFormWidget>
                                     fontWeight: FontWeight.w500,
                                   ),
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController1Validator
+                          validator: _model.clavePostControllerValidator
                               .asValidator(context),
                         ),
                         TextFormField(
-                          controller: _model.textController2,
+                          controller: _model.autorPostController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -271,11 +276,11 @@ class _PostFormWidgetState extends State<PostFormWidget>
                                     fontWeight: FontWeight.w500,
                                   ),
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController2Validator
+                          validator: _model.autorPostControllerValidator
                               .asValidator(context),
                         ),
                         TextFormField(
-                          controller: _model.textController3,
+                          controller: _model.tituloPostController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -335,11 +340,11 @@ class _PostFormWidgetState extends State<PostFormWidget>
                                     fontWeight: FontWeight.w500,
                                   ),
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController3Validator
+                          validator: _model.tituloPostControllerValidator
                               .asValidator(context),
                         ),
                         TextFormField(
-                          controller: _model.textController4,
+                          controller: _model.introPostController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -399,11 +404,11 @@ class _PostFormWidgetState extends State<PostFormWidget>
                                     fontWeight: FontWeight.w500,
                                   ),
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController4Validator
+                          validator: _model.introPostControllerValidator
                               .asValidator(context),
                         ),
                         TextFormField(
-                          controller: _model.textController5,
+                          controller: _model.catePostController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -463,11 +468,11 @@ class _PostFormWidgetState extends State<PostFormWidget>
                                     fontWeight: FontWeight.w500,
                                   ),
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController5Validator
+                          validator: _model.catePostControllerValidator
                               .asValidator(context),
                         ),
                         TextFormField(
-                          controller: _model.textController6,
+                          controller: _model.infoPostController,
                           autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
@@ -529,7 +534,7 @@ class _PostFormWidgetState extends State<PostFormWidget>
                           maxLines: 16,
                           minLines: 6,
                           cursorColor: Color(0xFF6F61EF),
-                          validator: _model.textController6Validator
+                          validator: _model.infoPostControllerValidator
                               .asValidator(context),
                         ),
                       ].divide(SizedBox(height: 12.0)),
@@ -551,35 +556,110 @@ class _PostFormWidgetState extends State<PostFormWidget>
                           width: 2.0,
                         ),
                       ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Icon(
-                              Icons.add_a_photo_rounded,
-                              color: Color(0xFF6F61EF),
-                              size: 32.0,
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Insertar Portada',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Plus Jakarta Sans',
-                                      color: Color(0xFF15161E),
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.w500,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                8.0, 8.0, 8.0, 8.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                final selectedMedia = await selectMedia(
+                                  mediaSource: MediaSource.photoGallery,
+                                  multiImage: false,
+                                );
+                                if (selectedMedia != null &&
+                                    selectedMedia.every((m) =>
+                                        validateFileFormat(
+                                            m.storagePath, context))) {
+                                  setState(() => _model.isDataUploading = true);
+                                  var selectedUploadedFiles =
+                                      <FFUploadedFile>[];
+
+                                  var downloadUrls = <String>[];
+                                  try {
+                                    selectedUploadedFiles = selectedMedia
+                                        .map((m) => FFUploadedFile(
+                                              name:
+                                                  m.storagePath.split('/').last,
+                                              bytes: m.bytes,
+                                              height: m.dimensions?.height,
+                                              width: m.dimensions?.width,
+                                              blurHash: m.blurHash,
+                                            ))
+                                        .toList();
+
+                                    downloadUrls = (await Future.wait(
+                                      selectedMedia.map(
+                                        (m) async => await uploadData(
+                                            m.storagePath, m.bytes),
+                                      ),
+                                    ))
+                                        .where((u) => u != null)
+                                        .map((u) => u!)
+                                        .toList();
+                                  } finally {
+                                    _model.isDataUploading = false;
+                                  }
+                                  if (selectedUploadedFiles.length ==
+                                          selectedMedia.length &&
+                                      downloadUrls.length ==
+                                          selectedMedia.length) {
+                                    setState(() {
+                                      _model.uploadedLocalFile =
+                                          selectedUploadedFiles.first;
+                                      _model.uploadedFileUrl =
+                                          downloadUrls.first;
+                                    });
+                                  } else {
+                                    setState(() {});
+                                    return;
+                                  }
+                                }
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.add_a_photo_rounded,
+                                    color: Color(0xFF6F61EF),
+                                    size: 32.0,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Insertar Portada',
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Plus Jakarta Sans',
+                                            color: Color(0xFF15161E),
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                     ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              _model.uploadedFileUrl,
+                              width: 62.0,
+                              height: 45.0,
+                              fit: BoxFit.cover,
+                              alignment: Alignment(1.00, 0.00),
+                            ),
+                          ),
+                        ],
                       ),
                     ).animateOnPageLoad(
                         animationsMap['containerOnPageLoadAnimation']!),
@@ -588,8 +668,39 @@ class _PostFormWidgetState extends State<PostFormWidget>
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 12.0),
                     child: FFButtonWidget(
-                      onPressed: () {
-                        print('Button pressed ...');
+                      onPressed: () async {
+                        if (_model.clavePostController.text == '12345') {
+                          await BlogsRecord.collection.doc().set({
+                            ...createBlogsRecordData(
+                              autor: _model.autorPostController.text,
+                              titulo: _model.tituloPostController.text,
+                              descripcion: _model.introPostController.text,
+                              image: _model.uploadedFileUrl,
+                              categoria: _model.catePostController.text,
+                              informacion: _model.infoPostController.text,
+                              clave: _model.clavePostController.text,
+                            ),
+                            'created_time': FieldValue.serverTimestamp(),
+                          });
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Post publicado'),
+                                content: Text('Se guardo exitosamente el post'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+
+                          context.pushNamed('HomePage');
+                        }
                       },
                       text: 'Enviar\n',
                       icon: Icon(
