@@ -211,21 +211,36 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              5.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            dateTimeFormat(
-                                'd/M h:mm a', widget.document!.createdTime!),
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: Color(0xFF0F1113),
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              'Fecha de publicación:',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                  ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  5.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                dateTimeFormat('d/M h:mm a',
+                                    widget.document!.createdTime!),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Plus Jakarta Sans',
+                                      color: Color(0xFF0F1113),
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
                         Hero(
                           tag: widget.document!.image,
