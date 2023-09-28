@@ -284,7 +284,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           stream: queryBlogsRecord(
                             queryBuilder: (blogsRecord) => blogsRecord.where(
                                 'categoria',
-                                isEqualTo: _model.buscarPostController.text),
+                                isEqualTo:
+                                    _model.buscarPostController.text != ''
+                                        ? _model.buscarPostController.text
+                                        : null),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.

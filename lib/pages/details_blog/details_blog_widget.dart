@@ -223,7 +223,7 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     color: FlutterFlowTheme.of(context)
-                                        .primaryText,
+                                        .secondaryBackground,
                                   ),
                             ),
                             Padding(
