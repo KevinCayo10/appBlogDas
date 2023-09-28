@@ -275,7 +275,10 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     5.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  'author',
+                                  valueOrDefault<String>(
+                                    widget.document?.autor,
+                                    'null',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
