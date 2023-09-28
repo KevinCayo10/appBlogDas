@@ -43,7 +43,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Color(0xFF533E85),
           automaticallyImplyLeading: false,
@@ -74,7 +73,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               width: MediaQuery.sizeOf(context).width * 1.0,
               height: MediaQuery.sizeOf(context).height * 1.0,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).secondaryBackground,
+                color: Colors.white,
               ),
               child: SingleChildScrollView(
                 child: Column(
@@ -86,7 +85,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       width: 100.0,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: Colors.white,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
@@ -97,6 +96,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Montserrat',
+                                  color: Colors.black,
                                   fontSize: 22.0,
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -107,6 +107,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Montserrat',
+                                  color: Colors.black,
                                   fontSize: 17.0,
                                 ),
                           ),
@@ -116,9 +117,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     Container(
                       width: 100.0,
                       height: 100.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                      ),
+                      decoration: BoxDecoration(),
                       child: Align(
                         alignment: AlignmentDirectional(0.00, 0.00),
                         child: Row(
@@ -129,8 +128,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 width: MediaQuery.sizeOf(context).width * 0.5,
                                 height: 63.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Colors.white,
                                   shape: BoxShape.rectangle,
                                 ),
                                 child: Padding(
@@ -222,8 +220,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               width: MediaQuery.sizeOf(context).width * 0.1,
                               height: 45.0,
                               decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                color: Colors.white,
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
