@@ -87,31 +87,35 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       decoration: BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Blog de Conocimientos \"Desarrollo Asistido por Software\"',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black,
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                          ),
-                          Text(
-                            'Publicaciones desarrolladas por estudiantes de Séptimo Semestre de la Carrera de Software en el Periodo Académico Abril-Septiembre 2023.',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Montserrat',
-                                  color: Colors.black,
-                                  fontSize: 17.0,
-                                ),
-                          ),
-                        ],
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              'Blog de Conocimientos \"Desarrollo Asistido por Software\"',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black,
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                            ),
+                            Text(
+                              'Publicaciones desarrolladas por estudiantes de Séptimo Semestre de la Carrera de Software en el Periodo Académico Abril-Septiembre 2023.',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Montserrat',
+                                    color: Colors.black,
+                                    fontSize: 17.0,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
@@ -266,10 +270,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0.00, 0.00),
+                      alignment: AlignmentDirectional(0.00, 1.00),
                       child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 30.0, 0.0, 30.0),
                         child: StreamBuilder<List<BlogsRecord>>(
                           stream: queryBlogsRecord(),
                           builder: (context, snapshot) {
