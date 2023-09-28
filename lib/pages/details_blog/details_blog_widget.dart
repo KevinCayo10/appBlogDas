@@ -160,6 +160,8 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => DetailsBlogModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

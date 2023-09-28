@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,6 +29,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     _model = createModel(context, () => HomePageModel());
 
     _model.buscarPostController ??= TextEditingController();
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -143,6 +145,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         MediaQuery.sizeOf(context).width * 0.2,
                                     child: TextFormField(
                                       controller: _model.buscarPostController,
+                                      onChanged: (_) => EasyDebounce.debounce(
+                                        '_model.buscarPostController',
+                                        Duration(milliseconds: 2000),
+                                        () => setState(() {}),
+                                      ),
                                       autofocus: true,
                                       obscureText: false,
                                       decoration: InputDecoration(
@@ -275,7 +282,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0, 30.0, 0.0, 40.0),
                         child: StreamBuilder<List<BlogsRecord>>(
-                          stream: queryBlogsRecord(),
+                          stream: queryBlogsRecord(
+                            queryBuilder: (blogsRecord) => blogsRecord.where(
+                                'categoria',
+                                isEqualTo: _model.buscarPostController.text),
+                          ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
