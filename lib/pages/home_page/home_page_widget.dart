@@ -96,7 +96,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 22.0,
                                   fontWeight: FontWeight.w800,
                                 ),
@@ -106,7 +106,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Readex Pro',
+                                  fontFamily: 'Montserrat',
                                   fontSize: 17.0,
                                 ),
                           ),
@@ -349,7 +349,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                         context)
                                                     .bodyMedium
                                                     .override(
-                                                      fontFamily: 'Readex Pro',
+                                                      fontFamily: 'Montserrat',
                                                       color: Color(0xFF4B39EF),
                                                     ),
                                               ),
