@@ -273,7 +273,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       alignment: AlignmentDirectional(0.00, 1.00),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 30.0, 0.0, 30.0),
+                            0.0, 30.0, 0.0, 40.0),
                         child: StreamBuilder<List<BlogsRecord>>(
                           stream: queryBlogsRecord(),
                           builder: (context, snapshot) {
@@ -294,7 +294,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             List<BlogsRecord> wrapBlogsRecordList =
                                 snapshot.data!;
                             return Wrap(
-                              spacing: 50.0,
+                              spacing: 75.0,
                               runSpacing: 20.0,
                               alignment: WrapAlignment.start,
                               crossAxisAlignment: WrapCrossAlignment.start,
