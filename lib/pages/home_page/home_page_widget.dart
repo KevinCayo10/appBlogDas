@@ -270,213 +270,223 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                     Align(
                       alignment: AlignmentDirectional(0.00, 0.00),
-                      child: StreamBuilder<List<BlogsRecord>>(
-                        stream: queryBlogsRecord(),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    FlutterFlowTheme.of(context).primary,
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        child: StreamBuilder<List<BlogsRecord>>(
+                          stream: queryBlogsRecord(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }
-                          List<BlogsRecord> wrapBlogsRecordList =
-                              snapshot.data!;
-                          return Wrap(
-                            spacing: 12.0,
-                            runSpacing: 12.0,
-                            alignment: WrapAlignment.start,
-                            crossAxisAlignment: WrapCrossAlignment.start,
-                            direction: Axis.horizontal,
-                            runAlignment: WrapAlignment.start,
-                            verticalDirection: VerticalDirection.down,
-                            clipBehavior: Clip.none,
-                            children: List.generate(wrapBlogsRecordList.length,
-                                (wrapIndex) {
-                              final wrapBlogsRecord =
-                                  wrapBlogsRecordList[wrapIndex];
-                              return Container(
-                                width: 363.0,
-                                height: 399.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 8.0, 8.0, 8.0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        child: Image.network(
-                                          wrapBlogsRecord.image,
-                                          width: 344.0,
-                                          height: 200.0,
-                                          fit: BoxFit.cover,
+                              );
+                            }
+                            List<BlogsRecord> wrapBlogsRecordList =
+                                snapshot.data!;
+                            return Wrap(
+                              spacing: 50.0,
+                              runSpacing: 20.0,
+                              alignment: WrapAlignment.start,
+                              crossAxisAlignment: WrapCrossAlignment.start,
+                              direction: Axis.horizontal,
+                              runAlignment: WrapAlignment.start,
+                              verticalDirection: VerticalDirection.down,
+                              clipBehavior: Clip.none,
+                              children: List.generate(
+                                  wrapBlogsRecordList.length, (wrapIndex) {
+                                final wrapBlogsRecord =
+                                    wrapBlogsRecordList[wrapIndex];
+                                return Container(
+                                  width: 363.0,
+                                  height: 399.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 8.0, 8.0, 8.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            wrapBlogsRecord.image,
+                                            width: 344.0,
+                                            height: 200.0,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Card(
-                                            clipBehavior:
-                                                Clip.antiAliasWithSaveLayer,
-                                            color: Color(0x4C4B39EF),
-                                            elevation: 0.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(8.0, 4.0, 8.0, 4.0),
-                                              child: Text(
-                                                wrapBlogsRecord.categoria,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Montserrat',
-                                                      color: Color(0xFF4B39EF),
-                                                    ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Card(
+                                              clipBehavior:
+                                                  Clip.antiAliasWithSaveLayer,
+                                              color: Color(0x4C4B39EF),
+                                              elevation: 0.0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
                                               ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
-                                        child: Text(
-                                          wrapBlogsRecord.titulo,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleLarge,
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(-1.00, 0.00),
-                                        child: Text(
-                                          wrapBlogsRecord.descripcion,
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Container(
-                                            width: 236.0,
-                                            height: 48.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
-                                                  child: Image.network(
-                                                    'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png',
-                                                    width: 30.0,
-                                                    height: 30.0,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          5.0, 0.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    wrapBlogsRecord.autor,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            width: 100.0,
-                                            height: 39.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                FlutterFlowIconButton(
-                                                  borderColor:
-                                                      Colors.transparent,
-                                                  borderRadius: 30.0,
-                                                  buttonSize: 40.0,
-                                                  icon: Icon(
-                                                    Icons.read_more,
-                                                    color: Color(0xFF01875F),
-                                                    size: 20.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    context.pushNamed(
-                                                      'DetailsBlog',
-                                                      queryParameters: {
-                                                        'document':
-                                                            serializeParam(
-                                                          wrapBlogsRecord,
-                                                          ParamType.Document,
-                                                        ),
-                                                      }.withoutNulls,
-                                                      extra: <String, dynamic>{
-                                                        'document':
-                                                            wrapBlogsRecord,
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                                Text(
-                                                  'Leer más',
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 4.0, 8.0, 4.0),
+                                                child: Text(
+                                                  wrapBlogsRecord.categoria,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
                                                       .override(
                                                         fontFamily:
-                                                            'Readex Pro',
+                                                            'Montserrat',
                                                         color:
-                                                            Color(0xFF01875F),
+                                                            Color(0xFF4B39EF),
                                                       ),
                                                 ),
-                                              ],
+                                              ),
                                             ),
+                                          ],
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.00, 0.00),
+                                          child: Text(
+                                            wrapBlogsRecord.titulo,
+                                            style: FlutterFlowTheme.of(context)
+                                                .titleLarge,
                                           ),
-                                        ],
-                                      ),
-                                    ],
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(-1.00, 0.00),
+                                          child: Text(
+                                            wrapBlogsRecord.descripcion,
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium,
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Container(
+                                              width: 236.0,
+                                              height: 48.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png',
+                                                      width: 30.0,
+                                                      height: 30.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      wrapBlogsRecord.autor,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 100.0,
+                                              height: 39.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  FlutterFlowIconButton(
+                                                    borderColor:
+                                                        Colors.transparent,
+                                                    borderRadius: 30.0,
+                                                    buttonSize: 40.0,
+                                                    icon: Icon(
+                                                      Icons.read_more,
+                                                      color: Color(0xFF01875F),
+                                                      size: 20.0,
+                                                    ),
+                                                    onPressed: () async {
+                                                      context.pushNamed(
+                                                        'DetailsBlog',
+                                                        queryParameters: {
+                                                          'document':
+                                                              serializeParam(
+                                                            wrapBlogsRecord,
+                                                            ParamType.Document,
+                                                          ),
+                                                        }.withoutNulls,
+                                                        extra: <String,
+                                                            dynamic>{
+                                                          'document':
+                                                              wrapBlogsRecord,
+                                                        },
+                                                      );
+                                                    },
+                                                  ),
+                                                  Text(
+                                                    'Leer más',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color:
+                                                              Color(0xFF01875F),
+                                                        ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              );
-                            }),
-                          );
-                        },
+                                );
+                              }),
+                            );
+                          },
+                        ),
                       ),
                     ),
                     Align(

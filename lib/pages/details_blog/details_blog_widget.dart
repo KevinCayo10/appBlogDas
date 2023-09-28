@@ -258,7 +258,7 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                             animationsMap['imageOnPageLoadAnimation']!),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 4.0, 0.0, 0.0),
+                              0.0, 10.0, 0.0, 0.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -292,7 +292,7 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
+                              0.0, 20.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
                               widget.document?.titulo,
@@ -311,7 +311,7 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              4.0, 4.0, 0.0, 0.0),
+                              4.0, 8.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
                               widget.document?.descripcion,
@@ -330,7 +330,7 @@ class _DetailsBlogWidgetState extends State<DetailsBlogWidget>
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              4.0, 4.0, 0.0, 0.0),
+                              4.0, 8.0, 0.0, 0.0),
                           child: Text(
                             valueOrDefault<String>(
                               widget.document?.informacion,
